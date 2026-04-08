@@ -1,0 +1,16 @@
+[Unit]
+Description=OpenClaw Sanitize Proxy
+After=network.target cliproxyapi.service
+
+[Service]
+Type=simple
+User=apiadmin
+WorkingDirectory=/home/apiadmin/sanitize-proxy
+ExecStart=/usr/bin/node /home/apiadmin/sanitize-proxy/proxy.mjs
+Restart=always
+RestartSec=3
+Environment=SANITIZE_PORT=18802
+Environment=UPSTREAM_PORT=18801
+
+[Install]
+WantedBy=multi-user.target
